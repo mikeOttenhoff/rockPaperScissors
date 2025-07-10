@@ -25,7 +25,6 @@ const playRound = function (humanChoice, computerChoice) {
   computerChoice = getComputerChoice();
 
   //rock
-  //rock
   if (humanChoice === "rock" && computerChoice === "rock") {
     return console.log(`${humanChoice}:${computerChoice} - It's a tie!`);
   } else if (humanChoice === "rock" && computerChoice === "paper") {
