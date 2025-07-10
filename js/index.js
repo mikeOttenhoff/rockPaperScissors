@@ -1,4 +1,4 @@
-const handShapes = { 0: "rock", 1: "paper", 2: "scissors" };
+const handShapes = { 0: "Rock", 1: "Paper", 2: "Scissors" };
 
 const getComputerChoice = function () {
   const handShapeArr = Object.keys(handShapes);
@@ -10,5 +10,20 @@ const getComputerChoice = function () {
   return randomValue;
 };
 
-getComputerChoice();
-console.log(getComputerChoice());
+const getHumanChoice = function () {
+  const humanPrompt = prompt(
+    "Pick one of the following: Rock, Paper, Scissors"
+  );
+  return humanPrompt;
+};
+
+const humanScore = 0;
+const computerScore = 0;
+
+const playRound = function (humanChoice, computerChoice) {
+  humanChoice = getHumanChoice().toLowerCase();
+  console.log(humanChoice);
+  computerChoice = getComputerChoice();
+};
+
+playRound();
