@@ -1,4 +1,5 @@
 const handShapes = { 0: "rock", 1: "paper", 2: "scissors" };
+const container = document.createElement("section");
 
 const getComputerChoice = function () {
   const handShapeArr = Object.keys(handShapes);
@@ -53,7 +54,7 @@ const playRound = function (humanChoice, computerChoice) {
 const body = document.querySelector("body");
 
 //create a container within the body
-const container = document.createElement("section");
+
 container.classList.add("container");
 body.appendChild(container);
 
@@ -77,9 +78,13 @@ shapeElements.forEach(function ([key, value]) {
   textElement.addEventListener("click", function () {
     humanChoice = value;
     playRound(humanChoice, getComputerChoice());
-    //Code below updates hte result score elements
+    //Updates the result score elements
     humanScoreElement.innerText = `Human: ${humanScore}`;
     computerScoreElement.innerText = `Computer: ${computerScore}`;
+    // Updates the result, current
+    currentHumanScore.innerText = `${getHumanChoice()}`;
+    currentComputerScore.innerText = `${getComputerChoice()}`;
+
     // Do something if either one get's 5 points
     if (humanScore === 5 || computerScore === 5) {
       const buttonsClass = document.querySelector(".buttons");
@@ -96,7 +101,21 @@ shapeElements.forEach(function ([key, value]) {
   shapeGroup.appendChild(textElement);
   contentDiv.appendChild(shapeGroup);
 });
+
 container.appendChild(contentDiv);
+
+// Elements to show what is currently played
+const currentPlay = document.createElement("div");
+currentPlay.classList.add("currentPlay");
+
+let currentHumanScore = document.createElement("p");
+currentHumanScore.innerText = ``;
+
+let currentComputerScore = document.createElement("p");
+currentComputerScore.innerText = ``;
+
+currentPlay.append(currentHumanScore, currentComputerScore);
+container.appendChild(currentPlay);
 
 // result element
 const results = document.createElement("div");
