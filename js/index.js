@@ -130,7 +130,7 @@ results.classList.add("results");
 
 const humanScoreElement = document.createElement("p");
 // the code below is needed to give us the zero in the beginning
-humanScoreElement.innerText = `Human: ${humanScore}`;
+humanScoreElement.innerText = `You: ${humanScore}`;
 
 const computerScoreElement = document.createElement("p");
 // the code below is needed to give us the zero in the beginning
