@@ -95,8 +95,10 @@ shapeElements.forEach(function ([key, value]) {
       if (humanScore === 5) {
         winner = "You win the game!";
         computerScoreElement.remove();
+        humanScoreElement.remove();
       } else {
         winner = "The computer wins the game!";
+        computerScoreElement.remove();
         humanScoreElement.remove();
       }
       const message = document.createElement("p");
