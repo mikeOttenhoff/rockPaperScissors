@@ -71,6 +71,7 @@ body {
   display: flex;
   gap: 1rem;
   font-size: 4rem;
+  text-align: center;
 }
 .currentPlay p {
   padding: 0 2rem;
