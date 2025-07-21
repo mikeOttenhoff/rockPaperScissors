@@ -20,8 +20,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 const playRound = function (humanChoice, computerChoice) {
-  humanChoice = getHumanChoice().toLowerCase();
-  computerChoice = getComputerChoice();
+  humanChoice = getHumanChoice();
 
   //Choices
   //rock
@@ -77,21 +76,29 @@ shapeElements.forEach(function ([key, value]) {
 
   textElement.addEventListener("click", function () {
     humanChoice = value;
-    playRound(humanChoice, getComputerChoice());
+    const computerChoice = getComputerChoice();
+
+    playRound(humanChoice, computerChoice);
     //Updates the result score elements
-    humanScoreElement.innerText = `Human: ${humanScore}`;
+    humanScoreElement.innerText = `You: ${humanScore}`;
     computerScoreElement.innerText = `Computer: ${computerScore}`;
     // Updates the result, current
-    currentHumanScore.innerText = `${getHumanChoice()}`;
-    currentComputerScore.innerText = `${getComputerChoice()}`;
+    currentHumanScore.innerText = `Your choice: ${getHumanChoice()}`;
+    currentComputerScore.innerText = `Computer: ${computerChoice}`;
 
     // Do something if either one get's 5 points
     if (humanScore === 5 || computerScore === 5) {
       const buttonsClass = document.querySelector(".buttons");
       buttonsClass.remove();
 
-      const winner =
-        humanScore === 5 ? "You win the game!" : "The computer wins the game!";
+      let winner;
+      if (humanScore === 5) {
+        winner = "You win the game!";
+        computerScoreElement.remove();
+      } else {
+        winner = "The computer wins the game!";
+        humanScoreElement.remove();
+      }
       const message = document.createElement("p");
       message.innerText = winner;
       results.appendChild(message);
@@ -120,11 +127,14 @@ container.appendChild(currentPlay);
 // result element
 const results = document.createElement("div");
 results.classList.add("results");
+
 const humanScoreElement = document.createElement("p");
 // the code below is needed to give us the zero in the beginning
 humanScoreElement.innerText = `Human: ${humanScore}`;
+
 const computerScoreElement = document.createElement("p");
 // the code below is needed to give us the zero in the beginning
 computerScoreElement.innerText = `Computer: ${computerScore}`;
+
 results.append(humanScoreElement, computerScoreElement);
 container.appendChild(results);
